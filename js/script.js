@@ -1,4 +1,7 @@
 $(window).load(function(){
+    var width = $(document).width();
+    var height = $(document).height();
+
     var audiosPath = new Array('aah1.ogg', 'aah2.ogg', 'aah3.ogg', 'aah4.ogg',
         'aah5.ogg', 'alla_ni_alla_ni.ogg', 'allahu1.ogg', 'allahu2.ogg',
         'bitch.ogg', 'bög1.ogg', 'bög2.ogg', 'calle_är_bög.ogg', 'cough.ogg',
@@ -15,8 +18,31 @@ $(window).load(function(){
         'waduhek1.ogg', 'waduhek2.ogg', 'walla.ogg', 'what1.ogg',
         'wheezing1.ogg', 'wheezing2.ogg', 'wheezing3.ogg', 'wheezing4.ogg',
         'whitemaleprivilege1.ogg', 'yeah.ogg', 'är.ogg');
+
+    var audiosText = new Array("OOH", "NEEJ", "AAH", "AAH OOH OOOOOH", "O-",
+    "ALLA NI, ALLA NI", "ALLAHU AKBAAAR", "ALLAHU AKBAR", "BITCH", "BÖöÖG",
+    "BÖöÖGAR", "CALLE. ÄR. BÖG.", "*h3&#x2122;*", "JAG TROR PÅ GUD",
+    "ÅÅH- mhh...", "(fucking) AAAHHH", "EAAAHHHH", "OM- OOOH...OOHHH...AJ",
+    "UUUUGGHH", "AAAH", "AAH", "FUCK YOU", "FYFAAN", "DRA ÅT HELVETE-",
+    "TA HAN, TA PÅ HAN, OWW...", "JAG KOMMER KNULLA SAMIR I ARSLET", "GEY",
+    "JÄÄÄÄÄÄÄÄÄÄÄÄÄVLAR", "*idubbbztv&#x2122;*", "JA(G)", "UHUH AHHHHAH",
+    "AHHHHHHHHHHHHAHAHAHAHAAHA", "UH-AHHHAHA", "EHEHE", "LOL", "FUCK OOOOFF",
+    "FUCK OFF. FU- UUUUUHH", "FUCKING GAY",
+    "OOH JÄVLAR. JAG BRINNER, JAG BRINNER... JAG BRINNER... OH SHIT TA MINA GREJOR SNABBT. FAN VA GEY TA MI- GE MIG VATTEN IDIOOOOOTTSSSS",
+    "ÅH NEEJ", "ÅHNEJ", "NEJ", "OHMYGUD NENENENEE MARIO, MARIO ANVÄND- ÅWHH GUUUD",
+    "ÅH ÅHH NEEEJ", "NEJ", "REMOVE", "VEM ÄR HAN",
+    "GO SHAWTY, IT'S YOUR BIRTHDAY, WE GONNA PARTY LIKE- ÅH GUD",
+    "NE MIN MAGNIEEEET", "SLÄPPTES... AV AN- AV UTAN ANLEDNING. UTAN AV ANLEDNING. ANLEDNING? UT.",
+    "HEEEEHHH", "UUUEEEHHHHH", "FU- ... *air drifting*", "HAN TEABAGGA MIIIG", "*roflcopterXD*",
+    "PFFRRTTRRTT", "MARIO VET DU?... VI FÖRSTÖR VÅRAN OZONE... NÄR VI EEHH... NÄR VI FYSER",
+    "HUR MÅNGA OZONES HAR VI? JAG TRODDE DET VAR 7", "VAFAN", "WHAT THE FFFUCK?",
+    "JAG ZZVÄR PÅ GUD", "WHA?", "TEHHH", "HHEEHH", "TEHHH", "TEHHH",
+    "GET FUCKED, CUCK", "YEAH", "ÄR");
+
     var pathConst = "audio/";
     var audios = audiosPath;
+
+    var isPlaying = false;
 
     function getRandom(min, max) {
         return Math.floor((Math.random() * max) + min);
@@ -24,12 +50,41 @@ $(window).load(function(){
 
     $(".button").click(function() {
         event.preventDefault();
-        $("audio").click();
+        playFile();
     });
 
-    $("audio").click(function(){
-        var src = pathConst + audiosPath[getRandom(0, audios.length)];
-        $(this).attr("src", src);
-        this.play();
-    });
+    function playFile() {
+        var pos = getRandom(0, audios.length);
+        var src = pathConst + audiosPath[pos];
+        var audio = new Audio();
+        audio.src = src;
+        audio.load();
+        if (isPlaying != true) {
+            audio.play();
+            audio.addEventListener('loadedmetadata', function() {
+                isPlaying = true;
+                console.log("Playing for: " + audio.duration + " seconds.");
+                var prevText = "Testing testing testing testing";
+                $("#file-text").html(audiosText[pos]);
+                showText(audiosText[pos], audio.duration);
+                console.log(isPlaying);
+            });
+            audio.addEventListener('playing', function() {
+                isPlaying = true;
+                console.log(isPlaying);
+            });
+            audio.addEventListener('ended', function() {
+                isPlaying = false;
+                $("#file-text").html("");
+                console.log(isPlaying);
+            }, false);
+        }
+    };
+
+    function showText(string, animDuration) {
+        var outerWidth = $("#file-text").outerWidth();
+        $("#file-text").offset({top: height/2, left: width + outerWidth});
+        $("#file-text").animate({left: -outerWidth}
+            , animDuration * 1000, $.bez([0.4, 0.87, 0.51, 0.19]));
+    }
 });
