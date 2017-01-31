@@ -1,4 +1,5 @@
 $(window).load(function(){
+    $("#background").fadeIn(1000);
     var width = $(document).width();
     var height = $(document).height();
 
