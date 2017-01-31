@@ -20,24 +20,26 @@ $(window).load(function(){
         'whitemaleprivilege1.ogg', 'yeah.ogg', 'är.ogg');
 
     var audiosText = new Array("OOH", "NEEJ", "AAH", "AAH OOH OOOOOH", "O-",
-    "ALLA NI, ALLA NI", "ALLAHU AKBAAAR", "ALLAHU AKBAR", "BITCH", "BÖöÖG",
-    "BÖöÖGAR", "CALLE. ÄR. BÖG.", "*H3H3&#x2122;*", "JAG TROR PÅ GUD",
-    "ÅÅH- mhh...", "(fucking) AAAHHH", "EAAAHHHH", "OM- OOOH...OOHHH...AJ",
-    "UUUUGGHH", "AAAH", "AAH", "FUCK YOU", "FYFAAN", "DRA ÅT HELVETE-",
-    "TA HAN, TA PÅ HAN, OWW...", "JAG KOMMER KNULLA SAMIR I ARSLET", "GEY",
-    "JÄÄÄÄÄÄÄÄÄÄÄÄÄVLAR", "*idubbbztv&#x2122;*", "JA(G)", "UHUH AHHHHAH",
-    "AHHHHHHHHHHHHAHAHAHAHAAHA", "UH-AHHHAHA", "EHEHE", "LOL", "FUCK OOOOFF",
-    "FUCK OFF. FU- UUUUUHH", "FUCKING GAY",
-    "OOH JÄVLAR. JAG BRINNER, JAG BRINNER... JAG BRINNER... OH SHIT TA MINA GREJOR SNABBT. FAN VA GEY TA MI- GE MIG VATTEN IDIOOOOOTTSSSS",
-    "ÅH NEEJ", "ÅHNEJ", "NEJ", "OHMYGUD NENENENEE MARIO, MARIO ANVÄND- ÅWHH GUUUD",
-    "ÅH ÅHH NEEEJ", "NEJ", "REMOVE", "VEM ÄR HAN",
-    "GO SHAWTY, IT'S YOUR BIRTHDAY, WE GONNA PARTY LIKE- ÅH GUD",
-    "NE MIN MAGNIEEEET", "SLÄPPTES... AV AN- AV UTAN ANLEDNING. UTAN AV ANLEDNING. ANLEDNING? UT.",
-    "HEEEEHHH", "UUUEEEHHHHH", "FU- ... *air drifting*", "HAN TEABAGGA MIIIG", "*roflcopterXD*",
-    "PFFRRTTRRTT", "MARIO VET DU?... VI FÖRSTÖR VÅRAN OZONE... NÄR VI EEHH... NÄR VI FYSER",
-    "HUR MÅNGA OZONES HAR VI? JAG TRODDE DET VAR 7", "VAFAN", "WHAT THE FFFUCK?",
-    "JAG ZZVÄR PÅ GUD", "WHA?", "TEHHH", "HHEEHH", "TEHHH", "TEHHH",
-    "GET FUCKED, CUCK", "YEAH", "ÄR");
+        "ALLA NI, ALLA NI", "ALLAHU AKBAAAR", "ALLAHU AKBAR", "BITCH", "BÖöÖG",
+        "BÖöÖGAR", "CALLE. ÄR. BÖG.", "*H3H3&#x2122;*", "JAG TROR PÅ GUD",
+        "ÅÅH- mhh...", "(fucking) AAAHHH", "EAAAHHHH", "OM- OOOH...OOHHH...AJ",
+        "UUUUGGHH", "AAAH", "AAH", "FUCK YOU", "FYFAAN", "DRA ÅT HELVETE-",
+        "TA HAN, TA PÅ HAN, AWW...", "JAG KOMMER KNULLA SAMIR I ARSLET", "GEY",
+        "JÄÄÄÄÄÄÄÄÄÄÄÄÄVLAR", "*idubbbztv&#x2122;*", "JA(G)", "UHUH AHHHHAH",
+        "AHHHHHHHHHHHHAHAHAHAHAAHA", "UH-AHHHAHA", "EHEHE", "LOL", "FUCK OOOOFF",
+        "FUCK OFF. FU- UUUUUHH", "FUCKING GAY",
+        "OOH JÄVLAR. JAG BRINNER, JAG BRINNER... JAG BRINNER... OH SHIT TA MINA GREJOR SNABBT. FAN VA GEY TA MI- GE MIG VATTEN IDIOOOOOTTSSSS",
+        "ÅH NEEJ", "ÅHNEJ", "NEJ", "OHMYGUD NENENENEE MARIO, MARIO ANVÄND- ÅWHH GUUUD",
+        "ÅH ÅHH NEEEJ", "NEJ", "REMOVE", "VEM ÄR HAN...AHA",
+        "GO SHAWTY, IT'S YOUR BIRTHDAY, WE GONNA PARTY LIKE- ÅH GUD",
+        "NE MIN MAGNIEEEET", "SLÄPPTES... AV AN- AV UTAN ANLEDNING. UTAN AV ANLEDNING. ANLEDNING? UT.",
+        "HEEEEHHH", "UUUEEEHHHHH", "FU- ... *air drifting*", "HAN TEABAGGA MIIIG", "*roflcopterXD*",
+        "PFFRRTTRRTT", "MARIO VET DU?... VI FÖRSTÖR VÅRAN OZONE... NÄR VI EEHH... NÄR VI FYSER",
+        "HUR MÅNGA OZONES HAR VI? JAG TRODDE DET VAR 7", "VAFAN", "WHAT THE FFFUCK?",
+        "JAG ZZVÄR PÅ GUD", "WHA?", "TEHHH", "HHEEHH", "TEHHH", "TEHHH",
+        "GET FUCKED, CUCK", "YEAH", "ÄR");
+
+    var isUnique = false;
 
     var pathConst = "audio/";
     var audios = audiosPath;
@@ -63,28 +65,53 @@ $(window).load(function(){
             audio.play();
             audio.addEventListener('loadedmetadata', function() {
                 isPlaying = true;
-                console.log("Playing for: " + audio.duration + " seconds.");
                 var prevText = "Testing testing testing testing";
                 $("#file-text").html(audiosText[pos]);
                 showText(audiosText[pos], audio.duration);
-                console.log(isPlaying);
+                scoreUp(audiosPath[pos]);
             });
             audio.addEventListener('playing', function() {
                 isPlaying = true;
-                console.log(isPlaying);
             });
             audio.addEventListener('ended', function() {
                 isPlaying = false;
-                $("#file-text").html("");
-                console.log(isPlaying);
             }, false);
         }
-    };
-
-    function showText(string, animDuration) {
-        var outerWidth = $("#file-text").outerWidth();
-        $("#file-text").offset({top: height/2, left: width + outerWidth});
-        $("#file-text").animate({left: -outerWidth}
-            , animDuration * 1000, $.bez([0.4, 0.87, 0.51, 0.19]));
     }
+
+    function showText(string, animDuration, unique) {
+        var outerWidth = $("#file-text").outerWidth();
+        $("#file-text").show();
+        $("#file-text").offset({top: height/2, left: width + outerWidth});
+        $("#file-text").animate({left: -outerWidth}, animDuration * 1000,
+            $.bez([0.48, 1, 0.58, 0]), function(){
+            $("#file-text").offset({top: height/2, left: width + outerWidth});
+        });
+    }
+
+    function scoreUp(file) {
+        var score;
+        switch (file) {
+            case 'noor_brinner.ogg':
+                score = 10;
+                break;
+            default:
+                score = 1;
+                break;
+        }
+        $("#file-text").before('<h4 class="scoreup" style="display: none;">+'+score+'</h4>');
+        var scoreupHeight = $(".scoreup").height();
+        $(".scoreup").fadeIn(200).animate({bottom: scoreupHeight},
+            {duration: 500, easing: 'swing'});
+        $(".scoreup").fadeOut(200, 'linear', function(){
+            $(".scoreup").remove();
+        });
+        var scoreText = $("#score").text();
+        var currentScoreStr = scoreText.substring(6, scoreText.length);
+        var currentScore = parseInt(currentScoreStr);
+        currentScore++;
+        console.log(currentScore);
+        $("#score").html("Score: " + currentScore);
+    }
+
 });
