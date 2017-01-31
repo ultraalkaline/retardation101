@@ -84,8 +84,8 @@ $(window).load(function(){
         var outerWidth = $("#file-text").outerWidth();
         $("#file-text").show();
         $("#file-text").offset({top: height/2, left: width + outerWidth});
-        $("#file-text").animate({left: -outerWidth}, animDuration * 1000,
-            $.bez([0.50, 1, 0.50, 0]), function(){
+        $("#file-text").animate({left: -outerWidth},
+            {duration: animDuration * 1000, easing: 'linear'}, function(){
             $("#file-text").offset({top: height/2, left: width + outerWidth});
         });
     }
