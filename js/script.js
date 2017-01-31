@@ -21,7 +21,7 @@ $(window).load(function(){
 
     var audiosText = new Array("OOH", "NEEJ", "AAH", "AAH OOH OOOOOH", "O-",
     "ALLA NI, ALLA NI", "ALLAHU AKBAAAR", "ALLAHU AKBAR", "BITCH", "BÖöÖG",
-    "BÖöÖGAR", "CALLE. ÄR. BÖG.", "*h3&#x2122;*", "JAG TROR PÅ GUD",
+    "BÖöÖGAR", "CALLE. ÄR. BÖG.", "*H3H3&#x2122;*", "JAG TROR PÅ GUD",
     "ÅÅH- mhh...", "(fucking) AAAHHH", "EAAAHHHH", "OM- OOOH...OOHHH...AJ",
     "UUUUGGHH", "AAAH", "AAH", "FUCK YOU", "FYFAAN", "DRA ÅT HELVETE-",
     "TA HAN, TA PÅ HAN, OWW...", "JAG KOMMER KNULLA SAMIR I ARSLET", "GEY",
