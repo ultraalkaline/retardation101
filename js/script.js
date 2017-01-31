@@ -85,33 +85,33 @@ $(window).load(function(){
         $("#file-text").show();
         $("#file-text").offset({top: height/2, left: width + outerWidth});
         $("#file-text").animate({left: -outerWidth}, animDuration * 1000,
-            $.bez([0.48, 1, 0.58, 0]), function(){
+            $.bez([0.50, 1, 0.50, 0]), function(){
             $("#file-text").offset({top: height/2, left: width + outerWidth});
         });
     }
 
     function scoreUp(file) {
-        var score;
+        var scoreText = $("#score").text();
+        var currentScoreStr = scoreText.substring(6, scoreText.length);
+        var currentScore = parseInt(currentScoreStr);
+        console.log(currentScore);
+
         switch (file) {
             case 'noor_brinner.ogg':
-                score = 10;
+                currentScore = currentScore + 10;
                 break;
             default:
-                score = 1;
+                currentScore++;
                 break;
         }
-        $("#file-text").before('<h4 class="scoreup" style="display: none;">+'+score+'</h4>');
+
+        $("#file-text").before('<h4 class="scoreup" style="display: none;">+'+currentScore+'</h4>');
         var scoreupHeight = $(".scoreup").height();
         $(".scoreup").fadeIn(200).animate({bottom: scoreupHeight},
             {duration: 500, easing: 'swing'});
         $(".scoreup").fadeOut(200, 'linear', function(){
             $(".scoreup").remove();
         });
-        var scoreText = $("#score").text();
-        var currentScoreStr = scoreText.substring(6, scoreText.length);
-        var currentScore = parseInt(currentScoreStr);
-        currentScore++;
-        console.log(currentScore);
         $("#score").html("Score: " + currentScore);
     }
 
