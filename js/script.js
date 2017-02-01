@@ -86,7 +86,7 @@ $(window).load(function(){
         $("#file-text").offset({top: height/2, left: width + outerWidth});
         if (animDuration <= 1.0) {
             $("#file-text").animate({left: -outerWidth - 20},
-                {duration: animDuration * 1000, easing: 'linear'}, function(){
+                {duration: animDuration * 1500, easing: 'linear'}, function(){
                 $("#file-text").offset({top: height/2, left: width + outerWidth});
             });
         } else {
