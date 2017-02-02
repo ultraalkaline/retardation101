@@ -13,6 +13,13 @@
     <!-- Implementation of jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
+    <!-- jQuery Cubic-Bezier plugin -->
+    <script src="js/jquery.bez.js"></script>
+    <!-- jQuery Easing plugin -->
+    <script src="js/jquery.easing.js"></script>
+    <!-- Main script -->
+    <script src="js/script.js"></script>
+
 </head>
 <body>
     <div id="background"></div>
@@ -29,15 +36,13 @@
     </div>
     <h2 id="file-text"></h2>
     <h3 id="score">Score: 0</h2>
-    <input id="volume" type="range" max="100" min="0" value="50"></input>
-    <
+    <div id="volume-container">
+        <p id="volume-indicator">VOLUME</p>
+        <input id="volume-slider" type="range" max="100" min="0" value="50"></input>
+    </div>
 
-    <!-- jQuery Cubic-Bezier plugin -->
-    <script src="js/jquery.bez.js"></script>
-    <!-- jQuery Easing plugin -->
-    <script src="js/jquery.easing.js"></script>
-    <!-- Main script -->
-    <script src="js/script.js"></script>
+
+
 </body>
 
 </html>

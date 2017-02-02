@@ -5,9 +5,9 @@ $(window).load(function(){
 
     var audiosPath = new Array('aah1.ogg', 'aah2.ogg', 'aah3.ogg', 'aah4.ogg',
         'aah5.ogg', 'alla_ni_alla_ni.ogg', 'allahu1.ogg', 'allahu2.ogg',
-        'bitch.ogg', 'bög1.ogg', 'bög2.ogg', 'calle_är_bög.ogg', 'cough.ogg',
-        'cuck1.ogg', 'cum1.ogg', 'cum2.ogg', 'cum3.ogg', 'cum4.ogg', 'cum5.ogg',
-        'cum6.ogg', 'cum7.ogg', 'fuckyou.ogg', 'fyfan.ogg', 'gat2sonk.ogg',
+        'bitch.ogg', 'bög1.ogg', 'bög2.ogg', 'cough.ogg', 'cuck1.ogg',
+        'cum1.ogg', 'cum2.ogg', 'cum3.ogg', 'cum4.ogg', 'cum5.ogg', 'cum6.ogg',
+        'cum7.ogg', 'fuckyou.ogg', 'fyfan.ogg', 'gat2sonk.ogg',
         'gay1.ogg', 'gay2.ogg', 'gay3.ogg', 'hölyshit.ogg', 'idubbbztv.ogg',
         'ja(g).ogg', 'laff1.ogg', 'laff2.ogg', 'laff3.ogg', 'laff4.ogg',
         'lol.ogg', 'meme1.ogg', 'meme2.ogg', 'meme3.ogg', 'noor_brinner.ogg',
@@ -22,7 +22,7 @@ $(window).load(function(){
 
     var audiosText = new Array("OOH", "NEEJ", "AAH", "AAH OOH OOOOOH", "O-",
         "ALLA NI, ALLA NI", "ALLAHU AKBAAAR", "ALLAHU AKBAR", "BITCH", "BÖöÖG",
-        "BÖöÖGAR", "CALLE. ÄR. BÖG.", "*H3H3&#x2122;*", "JAG TROR PÅ GUD",
+        "BÖöÖGAR", "*H3H3&#x2122;*", "JAG TROR PÅ GUD",
         "ÅÅH- mhh...", "(fucking) AAAHHH", "EAAAHHHH", "OM- OOOH...OOHHH...AJ",
         "UUUUGGHH", "AAAH", "AAH", "FUCK YOU", "FYFAAN", "DRA ÅT HELVETE-",
         "TA HAN, TA PÅ HAN, AWW...", "JAG KOMMER KNULLA SAMIR I ARSLET", "GEY",
@@ -45,7 +45,7 @@ $(window).load(function(){
     var pathConst = "audio/";
     var audios = audiosPath;
 
-    var volume = document.getElementById("volume");
+    var volumeSlider = document.getElementById("volume-slider");
 
     var isPlaying = false;
 
@@ -58,6 +58,10 @@ $(window).load(function(){
         playFile();
     });
 
+    $("#volume-slider").on("input change", function(){
+        $("#volume-indicator").css("color", "rgba(245, 20, 96," + this.value/100 + ")");
+    });
+
     function playFile() {
         var pos = getRandom(0, audios.length);
         var filename = audiosPath[pos];
@@ -65,7 +69,7 @@ $(window).load(function(){
         var src = pathConst + filename;
         var audio = new Audio();
         audio.src = src;
-        audio.volume = volume.value / 100;
+        audio.volume = volumeSlider.value / 100;
         audio.load();
         if (isPlaying != true) {
             audio.play();
@@ -140,5 +144,7 @@ $(window).load(function(){
     function sleep (time) {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
+
+
 
 });
