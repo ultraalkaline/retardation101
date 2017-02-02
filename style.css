@@ -191,6 +191,11 @@ h1 {
     background-color: #f95089;
     box-shadow: none;
 }
+.button-link {
+    border-radius: 100px;
+    height: 112px;
+    width: 112px;
+}
 a:visited {
     color: #000;
 }
@@ -233,4 +238,9 @@ a:link {
     margin: 0 0;
     left: 5em;
     color: rgba(245, 20, 96, 255);
+}
+
+input[type=range] {
+    position: absolute;
+    z-index: 100;
 }

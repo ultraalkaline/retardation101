@@ -45,6 +45,8 @@ $(window).load(function(){
     var pathConst = "audio/";
     var audios = audiosPath;
 
+    var volume = document.getElementById("volume");
+
     var isPlaying = false;
 
     function getRandom(min, max) {
@@ -58,54 +60,64 @@ $(window).load(function(){
 
     function playFile() {
         var pos = getRandom(0, audios.length);
-        var src = pathConst + audiosPath[pos];
+        var filename = audiosPath[pos];
+        var filetext = audiosText[pos];
+        var src = pathConst + filename;
         var audio = new Audio();
+        audio.volume = volume.value/100;
+        console.log(audio.volume);
         audio.src = src;
         audio.load();
         if (isPlaying != true) {
             audio.play();
             audio.addEventListener('loadedmetadata', function() {
                 isPlaying = true;
-                var prevText = "Testing testing testing testing";
-                $("#file-text").html(audiosText[pos]);
-                showText(audiosText[pos], audio.duration);
-                scoreUp(audiosPath[pos]);
+                $("#file-text").html(filetext);
+                showText(filetext, audio.duration, filename);
+                scoreUp(filename);
             });
             audio.addEventListener('playing', function() {
                 isPlaying = true;
             });
             audio.addEventListener('ended', function() {
-                isPlaying = false;
+                sleep(400).then(() => {
+                    isPlaying = false;
+                });
             }, false);
         }
     }
 
-    function showText(string, animDuration, unique) {
+    function showText(string, animDuration, filename) {
         var outerWidth = $("#file-text").outerWidth();
-        $("#file-text").show();
-        $("#file-text").offset({top: height/2, left: width + outerWidth});
-        if (animDuration <= 1.0) {
-            $("#file-text").animate({left: -outerWidth - 20},
-                {duration: animDuration * 1500, easing: 'linear'}, function(){
-                $("#file-text").offset({top: height/2, left: width + outerWidth});
-            });
-        } else {
-            $("#file-text").animate({left: -outerWidth - 20},
-                animDuration * 1000, $.bez([.1,.76,.42,.16]), function(){
-                $("#file-text").offset({top: height/2, left: width + outerWidth});
-            });
+        switch (filename) {
+            case 'allahu1.ogg' || 'allahu2.ogg':
+                $("#file-text").css("font-family", "noorFont");
+                break;
+            default:
+                $("#file-text").css("font-family", "textBoldFont");
+                break;
+
         }
+        $("#file-text").show();
+        $("#file-text").offset({top: height/2, left: width});
+        $("#file-text").animate({left: -outerWidth - 20},
+            animDuration * 1000, $.bez([.1,.76,.42,.16]), function(){
+            $("#file-text").offset({top: height/2, left: width + outerWidth});
+        });
+
     }
 
     function scoreUp(file) {
         var scoreText = $("#score").text();
         var currentScoreStr = scoreText.substring(6, scoreText.length);
         var currentScore = parseInt(currentScoreStr);
-        console.log(currentScore);
         var score;
         switch (file) {
             case 'noor_brinner.ogg':
                 score = 10;
+                break;
+            case 'walla.ogg':
+                score = 100;
                 break;
             default:
                 score = 1;
@@ -121,6 +133,10 @@ $(window).load(function(){
             $(".scoreup").remove();
         });
         $("#score").html("Score: " + currentScore);
+    }
+
+    function sleep (time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
     }
 
 });
