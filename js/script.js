@@ -50,7 +50,7 @@ $(window).load(function(){
     var isPlaying = false;
 
     function getRandom(min, max) {
-        return Math.floor((Math.random() * max) + min);
+        return Math.floor(Math.random()*(max-min+1)+min);
     }
 
     $(".button").click(function() {
@@ -59,7 +59,8 @@ $(window).load(function(){
     });
 
     function playFile() {
-        var pos = getRandom(0, audios.length);
+        //var pos = getRandom(0, audios.length);
+        var pos = getRandom(6, 7);
         var filename = audiosPath[pos];
         var filetext = audiosText[pos];
         var src = pathConst + filename;
@@ -90,7 +91,10 @@ $(window).load(function(){
     function showText(string, animDuration, filename) {
         var outerWidth = $("#file-text").outerWidth();
         switch (filename) {
-            case 'allahu1.ogg' || 'allahu2.ogg':
+            case 'allahu1.ogg':
+                $("#file-text").css("font-family", "noorFont");
+                break;
+            case 'allahu2.ogg':
                 $("#file-text").css("font-family", "noorFont");
                 break;
             default:
