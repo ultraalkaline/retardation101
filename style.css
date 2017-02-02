@@ -94,7 +94,7 @@
 /* Firefox < 16 */
 @-moz-keyframes bottomup {
     from { bottom: -100px}
-    to   { bottom: 0; }
+    to   { bottom: 0 }
 }
 /* Safari, Chrome and Opera > 12.1 */
 @-webkit-keyframes bottomup {
@@ -110,6 +110,34 @@
 @-o-keyframes bottomup {
     from { bottom: -100px}
     to   { bottom: 0; }
+}
+
+/*
+* Bottom to top 2 animation
+*/
+@keyframes bottomup2 {
+    from { bottom: -100px}
+    to   { bottom: 2em; }
+}
+/* Firefox < 16 */
+@-moz-keyframes bottomup2 {
+    from { bottom: -100px}
+    to   { bottom: 2em }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes bottomup2 {
+    from { bottom: -100px}
+    to   { bottom: 2em; }
+}
+/* Internet Explorer */
+@-ms-keyframes bottomup2 {
+    from { bottom: -100px}
+    to   { bottom: 2em; }
+}
+/* Opera < 12.1 */
+@-o-keyframes bottomup2 {
+    from { bottom: -100px}
+    to   { bottom: 2em; }
 }
 
 * {
@@ -249,6 +277,8 @@ input[type=range] {
     bottom: 2em;
     right: 2em;
     outline-width: 0;
+
+    animation: fadein 1.5s, bottomup2 1s;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -260,7 +290,14 @@ input[type=range]::-webkit-slider-thumb {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     margin-top: -4px;
 
-    transition: box-shadow 0.2s ease-in-out;
+    transition: width 200ms ease-in-out, height 200ms ease-in-out, margin-top 200ms ease-in-out;
+}
+
+input[type=range]:active::-webkit-slider-thumb {
+    background: #e5004d;
+    width: 24px;
+    height: 24px;
+    margin-top: -6px;
 }
 
 input[type=range]::-webkit-slider-runnable-track {
@@ -275,10 +312,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 }
 
-input[type=range]:focus::-webkit-slider-thumb {
-    background: #e5004d;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
+
 
 input[type=range]:focus::-webkit-slider-runnable-track {
 
