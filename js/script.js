@@ -59,7 +59,6 @@ $(window).load(function(){
     });
 
     function playFile() {
-        //var pos = getRandom(0, audios.length);
         var pos = getRandom(6, 7);
         var filename = audiosPath[pos];
         var filetext = audiosText[pos];
