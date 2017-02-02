@@ -50,7 +50,7 @@ $(window).load(function(){
     var isPlaying = false;
 
     function getRandom(min, max) {
-        return Math.floor(Math.random()*(max-min+1)+min);
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
     $(".button").click(function() {
@@ -59,14 +59,13 @@ $(window).load(function(){
     });
 
     function playFile() {
-        var pos = getRandom(6, 7);
+        var pos = getRandom(0, audios.length);
         var filename = audiosPath[pos];
         var filetext = audiosText[pos];
         var src = pathConst + filename;
         var audio = new Audio();
-        audio.volume = volume.value/100;
-        console.log(audio.volume);
         audio.src = src;
+        audio.volume = volume.value / 100;
         audio.load();
         if (isPlaying != true) {
             audio.play();
@@ -104,7 +103,7 @@ $(window).load(function(){
         $("#file-text").show();
         $("#file-text").offset({top: height/2, left: width});
         $("#file-text").animate({left: -outerWidth - 20},
-            animDuration * 1000, $.bez([.1,.76,.42,.16]), function(){
+            animDuration * 1000, $.bez([0.1, 0.76, 0.42, 0.16]), function(){
             $("#file-text").offset({top: height/2, left: width + outerWidth});
         });
 

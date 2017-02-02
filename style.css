@@ -242,5 +242,44 @@ a:link {
 
 input[type=range] {
     position: absolute;
-    z-index: 100;
+    z-index: 101;
+    background: transparent;
+    -webkit-appearance: none;
+
+    bottom: 2em;
+    right: 2em;
+    outline-width: 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #F51460;
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    margin-top: -4px;
+
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 350px;
+    height: 10px;
+    vertical-align: middle;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: #c50043;
+    border-radius: 20px;
+    border: 0.2px solid #010101;
+    cursor: pointer;
+
+}
+
+input[type=range]:focus::-webkit-slider-thumb {
+    background: #e5004d;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+
 }
