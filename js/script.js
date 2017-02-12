@@ -7,8 +7,8 @@ $(window).load(function(){
         'aah5.ogg', 'alla_ni_alla_ni.ogg', 'allahu1.ogg', 'allahu2.ogg',
         'bitch.ogg', 'bög1.ogg', 'bög2.ogg', 'cough.ogg', 'cuck1.ogg',
         'cum1.ogg', 'cum2.ogg', 'cum3.ogg', 'cum4.ogg', 'cum5.ogg', 'cum6.ogg',
-        'cum7.ogg', 'fuckyou.ogg', 'fyfan.ogg', 'gat2sonk.ogg',
-        'gay1.ogg', 'gay2.ogg', 'gay3.ogg', 'hölyshit.ogg', 'idubbbztv.ogg',
+        'cum7.ogg', 'fuckyou.ogg', 'fyfan.ogg', 'gat2sonk1.ogg',
+        'gay1.ogg', 'gay2.ogg', 'gay3.ogg', 'hölyshit.ogg', 'idubbbztv1.ogg',
         'ja(g).ogg', 'laff1.ogg', 'laff2.ogg', 'laff3.ogg', 'laff4.ogg',
         'lol.ogg', 'meme1.ogg', 'meme2.ogg', 'meme3.ogg', 'noor_brinner.ogg',
         'ohno1.ogg', 'ohno2.ogg', 'ohno3.ogg', 'ohno4.ogg', 'ohno5.ogg',
@@ -16,7 +16,7 @@ $(window).load(function(){
         'retardation3.ogg', 'retardation4.ogg', 'retardation5.ogg',
         'retardation6.ogg', 'retardation7.ogg', 'retardation8.ogg',
         'retardation9.ogg', 'scat1.ogg', 'theory1.ogg', 'theory2.ogg',
-        'waduhek1.ogg', 'waduhek2.ogg', 'walla.ogg', 'what1.ogg',
+        'waduhek1.ogg', 'waduhek2.ogg', 'walla1.ogg', 'wenn1.ogg', 'what1.ogg',
         'wheezing1.ogg', 'wheezing2.ogg', 'wheezing3.ogg', 'wheezing4.ogg',
         'whitemaleprivilege1.ogg', 'yeah.ogg', 'är.ogg');
 
@@ -37,7 +37,7 @@ $(window).load(function(){
         "HEEEEHHH", "UUUEEEHHHHH", "FU- ... *air drifting*", "HAN TEABAGGA MIIIG", "*roflcopterXD*",
         "PFFRRTTRRTT", "MARIO VET DU?... VI FÖRSTÖR VÅRAN OZONE... NÄR VI EEHH... NÄR VI FYSER",
         "HUR MÅNGA OZONES HAR VI? JAG TRODDE DET VAR 7", "VAFAN", "WHAT THE FFFUCK?",
-        "JAG ZZVÄR PÅ GUD", "WHA?", "TEHHH", "HHEEHH", "TEHHH", "TEHHH",
+        "JAG ZZVÄR PÅ GUD", "WENN WENN WENN WENN WENN &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;WEEEEEEEEEEEEEEEEEN", "WHA?", "TEHHH", "HHEEHH", "TEHHH", "TEHHH",
         "GET FUCKED, CUCK", "YEAH", "ÄR");
 
     var isUnique = false;
@@ -46,6 +46,8 @@ $(window).load(function(){
     var audios = audiosPath;
 
     var volumeSlider = document.getElementById("volume-slider");
+
+    var text = new Text();
 
     var isPlaying = false;
 
