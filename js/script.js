@@ -58,7 +58,7 @@ $(window).load(function(){
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    $("#soundboard-container").css("top", $("#wrapper").height()/2 + 400 + "px");
+    $("#soundboard-container").css("top", $("#wrapper").height() + "px");
 
 
     $("#button-retardation").click(function() {
