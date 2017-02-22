@@ -1,12 +1,31 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
     <title>Retardation Soundboard</title>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, max-scale=1.0, user-scalable=0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<meta name="author" content="Jovan Polus">
     <link rel="stylesheet" href="style.css" type="text/css"/>
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="img/icons/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/icons/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/icons/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/icons/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/icons/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/icons/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/icons/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/icons/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/icons/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="img/icons/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/icons/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/icons/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/icons/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/icons/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="img/icons/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- Material Design Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -28,21 +47,27 @@
     <div id="wrapper">
         <h1 id="welcome">Welcome to retardation</h1>
 
-        <a class="button-link" href="#">
-            <div class="button">
-                <img class="icon" src="img/icons/ic_accessible_black_48dp_1x.png"/>
+        <a class="button-link" id="retardation-link" href="#">
+            <div class="button" id="button-retardation">
+                <img class="icon" src="img/icons/ic_accessible_black_48px.svg"/>
             </div>
         </a>
 
-    </div>
-    <h2 id="file-text"></h2>
-    <h3 id="score">Score: 0</h2>
-    <div id="volume-container">
-        <p id="volume-indicator">VOLUME</p>
-        <input id="volume-slider" type="range" max="100" min="0" value="50"></input>
+        <h2 id="file-text"></h2>
+        <h3 id="score">Score: 0</h2>
+        <div id="volume-container">
+            <p id="volume-indicator">VOLUME</p>
+            <input id="volume-slider" type="range" max="100" min="0" value="50"></input>
+        </div>
+
     </div>
 
+    <div id="soundboard-container">
+    </div>
 
+        <div class="button" id="button-anchor">
+            <img class="icon" src="img/icons/ic_arrow_drop_down_black_48px.svg"/>
+        </div>
 
 </body>
 

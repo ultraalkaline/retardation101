@@ -51,17 +51,67 @@ $(window).load(function(){
 
     var isPlaying = false;
 
+    var hasScrolledDown = false;
+
     function getRandom(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
-    $(".button").click(function() {
+    $("#button-retardation").click(function() {
         event.preventDefault();
         playFile();
     });
 
     $("#volume-slider").on("input change", function(){
         $("#volume-indicator").css("color", "rgba(245, 20, 96," + this.value/100 + ")");
+    });
+
+    $("#button-anchor").click(function() {
+        var targetOffset;
+        if (!hasScrolledDown) {
+            targetOffset = $("#soundboard-container").offset().top;
+            $('html, body').animate({scrollTop: targetOffset}, 500);
+            $(this).css("transform", "rotate(180deg)");
+            hasScrolledDown = true;
+        } else {
+            $('html, body').animate({scrollTop: 0}, 500);
+            $(this).css("transform", "rotate(0)");
+            hasScrolledDown = false;
+        }
+
+    });
+
+    for (var i = 0; i < audiosPath.length; i++) {
+        var fileName = audiosPath[i].replace(/\.[^/.]+$/, "");
+        $("#soundboard-container").append('<button class="soundboard-item" value="'
+        + audiosPath[i]
+        + '">'+ fileName + '</button>');
+    }
+
+    $(".soundboard-item").hover(function(){
+        $(this).addClass("soundboard-item-hover");
+
+    }, function(){
+        $(this).removeClass("soundboard-item-hover");
+    });
+
+    $(".soundboard-item").click(function(){
+
+        var audio = new Audio();
+        var fileName = $(this).val();
+        audio.src = pathConst + fileName;
+        audio.volume = volumeSlider.value / 100;
+        audio.load();
+        audio.play();
+        audio.addEventListener('loadedmetadata', function(){
+            scoreUp(fileName);
+        });
+        audio.addEventListener('playing', function() {
+            $(this).addClass("soundboard-item-hover");
+        });
+        audio.addEventListener('ended', function() {
+            $(this).removeClass("soundboard-item-hover");
+        }, false);
     });
 
     function playFile() {
@@ -73,7 +123,7 @@ $(window).load(function(){
         audio.src = src;
         audio.volume = volumeSlider.value / 100;
         audio.load();
-        if (isPlaying != true) {
+        if (!isPlaying) {
             audio.play();
             audio.addEventListener('loadedmetadata', function() {
                 isPlaying = true;
@@ -94,6 +144,7 @@ $(window).load(function(){
 
     function showText(string, animDuration, filename) {
         var outerWidth = $("#file-text").outerWidth();
+        var wrapperHeight = $("#wrapper").height();
         switch (filename) {
             case 'allahu1.ogg':
                 $("#file-text").css("font-family", "noorFont");
@@ -107,10 +158,10 @@ $(window).load(function(){
 
         }
         $("#file-text").show();
-        $("#file-text").offset({top: height/2, left: width});
+        $("#file-text").offset({top: wrapperHeight/2, left: width});
         $("#file-text").animate({left: -outerWidth - 20},
             animDuration * 1000, $.bez([0.1, 0.76, 0.42, 0.16]), function(){
-            $("#file-text").offset({top: height/2, left: width + outerWidth});
+            $("#file-text").offset({top: wrapperHeight/2, left: width + outerWidth});
         });
 
     }
@@ -119,21 +170,10 @@ $(window).load(function(){
         var scoreText = $("#score").text();
         var currentScoreStr = scoreText.substring(6, scoreText.length);
         var currentScore = parseInt(currentScoreStr);
-        var score;
-        switch (file) {
-            case 'noor_brinner.ogg':
-                score = 10;
-                break;
-            case 'walla.ogg':
-                score = 100;
-                break;
-            default:
-                score = 1;
-                break;
-        }
+        var score = scoreCalc(file);
         currentScore = currentScore + score;
 
-        $("#file-text").before('<h4 class="scoreup" style="display: none;">+'+score+'</h4>');
+        $("#score").before('<h4 class="scoreup" style="display: none;">+'+score+'</h4>');
         var scoreupHeight = $(".scoreup").height();
         $(".scoreup").fadeIn(200).animate({bottom: scoreupHeight},
             {duration: 500, easing: 'swing'});
@@ -147,6 +187,22 @@ $(window).load(function(){
         return new Promise((resolve) => setTimeout(resolve, time));
     }
 
+    function scoreCalc(filename) {
+        switch (filename) {
+            case 'noor_brinner.ogg':
+                return 10;
+                break;
+            case 'walla.ogg':
+                return 100;
+                break;
 
+            case 'wenn1.ogg':
+                return 1000000;
+                break;
+            default:
+                return 1;
+                break;
+        }
+    }
 
 });
