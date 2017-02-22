@@ -199,7 +199,6 @@ $(window).load(function(){
             case 'walla.ogg':
                 return 100;
                 break;
-
             case 'wenn1.ogg':
                 return 1000000;
                 break;

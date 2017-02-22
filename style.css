@@ -327,7 +327,7 @@ input[type=range]::-webkit-slider-runnable-track {
     color: rgba(245, 20, 96, 0.5);
     letter-spacing: 15px;
     margin-bottom: 0.5em;
-    margin-left: 2px;
+    left: 0.5em;
 }
 
 #button-anchor {
