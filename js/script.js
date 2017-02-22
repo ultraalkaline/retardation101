@@ -40,6 +40,7 @@ $(window).load(function(){
         "JAG ZZVÄR PÅ GUD", "WENN WENN WENN WENN WENN &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;WEEEEEEEEEEEEEEEEEN", "WHA?", "TEHHH", "HHEEHH", "TEHHH", "TEHHH",
         "GET FUCKED, CUCK", "YEAH", "ÄR");
 
+
     var isUnique = false;
 
     var pathConst = "audio/";
@@ -56,6 +57,9 @@ $(window).load(function(){
     function getRandom(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
+
+    $("#soundboard-container").css("top", $("#wrapper").height()/2 + 400 + "px");
+
 
     $("#button-retardation").click(function() {
         event.preventDefault();
