@@ -380,10 +380,6 @@ input[type=range]::-webkit-slider-runnable-track {
     animation: none;
 }
 
-.button-anchor-scrolled {
-    transform: rotate(180deg);
-}
-
 #soundboard-container {
     position: absolute;
     display: table;

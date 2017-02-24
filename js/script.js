@@ -54,6 +54,8 @@ $(window).load(function(){
 
     var hasScrolledDown = false;
 
+    var targetOffset;
+
     function getRandom(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
@@ -71,19 +73,32 @@ $(window).load(function(){
     });
 
     $("#button-anchor").click(function() {
-        var targetOffset;
         if (!hasScrolledDown) {
             targetOffset = $("#soundboard-container").offset().top;
-            $('html, body').animate({scrollTop: targetOffset}, 500);
+            $('html, body').animate({scrollTop: targetOffset}, 200);
             $(this).css("transform", "rotate(180deg)");
             hasScrolledDown = true;
         } else {
-            $('html, body').animate({scrollTop: 0}, 500);
+            $('html, body').animate({scrollTop: 0}, 200);
             $(this).css("transform", "rotate(0)");
             hasScrolledDown = false;
         }
 
     });
+
+    $("html, body").mousewheel(function(e) {
+        if (e.deltaY < 0 && !hasScrolledDown) {
+            targetOffset = $("#soundboard-container").offset().top;
+            $('html, body').animate({scrollTop: targetOffset}, 200);
+            $("#button-anchor").css("transform", "rotate(180deg)");
+            hasScrolledDown = true;
+        } else if (e.deltaY > 0 && hasScrolledDown) {
+            $('html, body').animate({scrollTop: 0}, 200);
+            $("#button-anchor").css("transform", "rotate(0)");
+            hasScrolledDown = false;
+        }
+    });
+
 
     for (var i = 0; i < audiosPath.length; i++) {
         var fileName = audiosPath[i].replace(/\.[^/.]+$/, "");
