@@ -412,6 +412,10 @@ input[type=range]::-webkit-slider-runnable-track {
                 background 200ms ease-in-out;
 }
 
+.soundboard-item:focus {
+    outline: 0;
+}
+
 .soundboard-item-hover {
     border-radius: 2em;
     background: #B8003E;

@@ -3,6 +3,10 @@ $(window).load(function(){
     var width = $(document).width();
     var height = $(document).height();
 
+    $(this).resize(function(){
+        $("#soundboard-container").css("top", $("#wrapper").height() + "px");
+    });
+
     var audiosPath = new Array('aah1.ogg', 'aah2.ogg', 'aah3.ogg', 'aah4.ogg',
         'aah5.ogg', 'alla_ni_alla_ni.ogg', 'allahu1.ogg', 'allahu2.ogg',
         'bitch.ogg', 'bög1.ogg', 'bög2.ogg', 'cough.ogg', 'cuck1.ogg',
@@ -74,28 +78,26 @@ $(window).load(function(){
 
     $("#button-anchor").click(function() {
         if (!hasScrolledDown) {
-            targetOffset = $("#soundboard-container").offset().top;
-            $('html, body').animate({scrollTop: targetOffset}, 200);
-            $(this).css("transform", "rotate(180deg)");
-            hasScrolledDown = true;
+            scrollDown();
         } else {
-            $('html, body').animate({scrollTop: 0}, 200);
-            $(this).css("transform", "rotate(0)");
-            hasScrolledDown = false;
+            scrollUp();
         }
 
     });
 
     $("html, body").mousewheel(function(e) {
         if (e.deltaY < 0 && !hasScrolledDown) {
-            targetOffset = $("#soundboard-container").offset().top;
-            $('html, body').animate({scrollTop: targetOffset}, 200);
-            $("#button-anchor").css("transform", "rotate(180deg)");
-            hasScrolledDown = true;
+            scrollDown();
         } else if (e.deltaY > 0 && hasScrolledDown) {
-            $('html, body').animate({scrollTop: 0}, 200);
-            $("#button-anchor").css("transform", "rotate(0)");
-            hasScrolledDown = false;
+            scrollUp();
+        }
+    });
+
+    $(document).bind('keydown', function(e){
+        if (e.which == 40 && !hasScrolledDown) {
+            scrollDown();
+        } else if (e.which == 38 && hasScrolledDown) {
+            scrollUp();
         }
     });
 
@@ -221,6 +223,19 @@ $(window).load(function(){
                 return 1;
                 break;
         }
+    }
+
+    function scrollDown() {
+        targetOffset = $("#soundboard-container").offset().top;
+        $('html, body').animate({scrollTop: targetOffset}, 200);
+        $("#button-anchor").css("transform", "rotate(180deg)");
+        hasScrolledDown = true;
+    }
+
+    function scrollUp() {
+        $('html, body').animate({scrollTop: 0}, 200);
+        $("#button-anchor").css("transform", "rotate(0)");
+        hasScrolledDown = false;
     }
 
 });
