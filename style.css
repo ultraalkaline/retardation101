@@ -279,7 +279,7 @@ a:link {
     bottom: 0;
     right: 2em;
     animation: fadein 1.5s, bottomup 500ms;
-    z-index: 101;
+    z-index: 3;
     align-items: center;
 }
 
@@ -400,7 +400,7 @@ input[type=range]::-webkit-slider-runnable-track {
     padding: 1em;
     color: #FFF;
     font-family: scoreFont;
-    font-size: 1.2em;
+    font-size: 1em;
     background: #000;
     border-radius: 1em;
     border-style: none;
@@ -412,11 +412,33 @@ input[type=range]::-webkit-slider-runnable-track {
                 background 200ms ease-in-out;
 }
 
+.new {
+    background: #c50043;
+    box-shadow: 0 0 5px #000;
+}
+
 .soundboard-item:focus {
     outline: 0;
+}
+
+.new:hover {
+    background: #000;
+    box-shadow: 0 0 5px #c50043;
 }
 
 .soundboard-item-hover {
     border-radius: 2em;
     background: #B8003E;
+}
+
+#new-tip {
+    position: fixed;
+    font-family: scoreFont;
+    color: #FF4D7F;
+    text-shadow: 0 0 10px #000;
+    margin-bottom: 20%;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
 }

@@ -8,7 +8,10 @@
 	<meta name="author" content="Jovan Polus">
     <link rel="stylesheet" href="style.css" type="text/css"/>
 
-    <!-- Icons -->
+    <!-- Material Design Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- FavIcons -->
     <link rel="apple-touch-icon" sizes="57x57" href="img/icons/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="img/icons/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="img/icons/favicon/apple-icon-72x72.png">
@@ -27,10 +30,26 @@
     <meta name="msapplication-TileImage" content="img/icons/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Material Design Icons -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- Implementation of jQuery -->
+
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase-storage.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAIHgIUVsKechGt8THxS4ukixhWfe1KeAs",
+        authDomain: "retardation101-53eb2.firebaseapp.com",
+        databaseURL: "https://retardation101-53eb2.firebaseio.com",
+        storageBucket: "retardation101-53eb2.appspot.com",
+        messagingSenderId: "541207932707"
+      };
+      firebase.initializeApp(config);
+    </script>
 
     <!-- jQuery Cubic-Bezier plugin -->
     <script src="js/jquery.bez.js"></script>
@@ -62,14 +81,18 @@
             <input id="volume-slider" type="range" max="100" min="0" value="50"></input>
         </div>
 
+        <p id="new-tip">ROSA ÄR NYA LJUD, IDIOTTSSS!1one!</p>
+
+
     </div>
 
     <div id="soundboard-container">
     </div>
 
-        <div class="button" id="button-anchor">
-            <img class="icon" src="img/icons/ic_arrow_drop_down_black_48px.svg"/>
-        </div>
+    <div class="button" id="button-anchor">
+        <img class="icon" src="img/icons/ic_arrow_drop_down_black_48px.svg"/>
+    </div>
+
 
 </body>
 
